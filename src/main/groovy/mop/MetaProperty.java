@@ -24,9 +24,11 @@ import java.util.List;
  * @author Jochen Theodorou
  */
 public interface MetaProperty {
-    public List<MetaMethod> getter(boolean accessField);
-    public List<MetaMethod> setter(boolean accessField);
     public String getName();
     public Class getType();
     public int getModifiers();
+    public List<MetaMethod> getPropertyGetter();
+    public MetaMethod getPropertySetter();
+    public MetaMethod getFieldGetter();
+    public MetaMethod getFieldSetter();
 }

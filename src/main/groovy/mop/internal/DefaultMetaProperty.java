@@ -31,13 +31,15 @@ public class DefaultMetaProperty implements MetaProperty {
     private final String name;
     private final Class type;
     private final List<MetaMethod> getter;
-    private final List<MetaMethod> setter;
+    private final MetaMethod setter, fieldSetter, fieldGetter;
 
-    public DefaultMetaProperty(String name, Class type, List<MetaMethod> getter, List<MetaMethod> setter) {
+    public DefaultMetaProperty(String name, Class type, List<MetaMethod> getter, MetaMethod setter, MetaMethod fieldGetter, MetaMethod fieldSetter) {
         this.name = name;
         this.type = type;
         this.getter = getter;
         this.setter = setter;
+        this.fieldGetter = fieldGetter;
+        this.fieldSetter = fieldSetter;
     }
 
     /**
@@ -62,12 +64,22 @@ public class DefaultMetaProperty implements MetaProperty {
     }
 
     @Override
-    public List<MetaMethod> getter(boolean accessField) {
+    public List<MetaMethod> getPropertyGetter() {
         return getter;
     }
 
     @Override
-    public List<MetaMethod> setter(boolean accessField) {
+    public MetaMethod getPropertySetter() {
         return setter;
+    }
+
+    @Override
+    public MetaMethod getFieldGetter() {
+        return fieldGetter;
+    }
+
+    @Override
+    public MetaMethod getFieldSetter() {
+        return fieldSetter;
     }
 }

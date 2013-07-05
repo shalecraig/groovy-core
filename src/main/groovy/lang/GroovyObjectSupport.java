@@ -44,6 +44,10 @@ public abstract class GroovyObjectSupport implements GroovyObject {
         return getMetaClass().invokeMethod(this, name, args);
     }
 
+    boolean hasProperty(String name) {
+        return null == getMetaClass().hasProperty(this, name);
+    }
+
     public MetaClass getMetaClass() {
         if (metaClass == null) {
             metaClass = InvokerHelper.getMetaClass(getClass());

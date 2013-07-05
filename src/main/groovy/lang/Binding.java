@@ -95,25 +95,20 @@ public class Binding extends GroovyObjectSupport {
      * Overloaded to make variables appear as bean properties or via the subscript operator
      */
     public Object getProperty(String property) {
-        /** @todo we should check if we have the property with the metaClass instead of try/catch  */
-        try {
+        if (super.hasProperty(property)) {
             return super.getProperty(property);
         }
-        catch (MissingPropertyException e) {
-            return getVariable(property);
-        }
+        return getVariable(property);
     }
 
     /**
      * Overloaded to make variables appear as bean properties or via the subscript operator
      */
     public void setProperty(String property, Object newValue) {
-        /** @todo we should check if we have the property with the metaClass instead of try/catch  */
-        try {
+        if (super.hasProperty(property)) {
             super.setProperty(property, newValue);
-        }
-        catch (MissingPropertyException e) {
-            setVariable(property, newValue);
+        } else {
+            setProperty(property, newValue);
         }
     }
     

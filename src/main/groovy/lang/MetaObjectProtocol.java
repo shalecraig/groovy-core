@@ -84,6 +84,7 @@ public interface MetaObjectProtocol {
      * @param name The name of the property
      * @return The MetaProperty or null if it doesn't exist
      */
+    // TODO: this method does not return a boolean, but the javadoc implies it does.
     MetaProperty hasProperty(Object obj, String name);
 
     /**
